@@ -39,7 +39,6 @@ dependencies {
     implementation libs.material
     implementation libs.androidx.activity
     implementation libs.androidx.constraintlayout
-    //TODO fix retrofit dependency
     implementation libs.retrofit
     implementation libs.retrofit.converter.gson
     testImplementation libs.junit
