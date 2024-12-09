@@ -10,5 +10,6 @@ data class Station (
     val adresse: String,
     val ville: String,
     val prix: List<PrixElement>,
-    val carburants: List<String>
+    val carburants: List<String>,
+    val favorite: Boolean
 ) : Serializable

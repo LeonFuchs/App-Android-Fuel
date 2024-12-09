@@ -17,6 +17,8 @@ class StationListFragment : Fragment() {
     private lateinit var stationAdapter: StationAdapter
     private lateinit var recyclerView: RecyclerView
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {

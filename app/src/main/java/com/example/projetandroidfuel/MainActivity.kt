@@ -1,9 +1,12 @@
 package com.example.projetandroidfuel
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,6 +20,16 @@ class MainActivity : AppCompatActivity() {
     private val retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
         .baseUrl(SERVER_BASE_URL).build()
     private val stationService = retrofit.create(StationService::class.java)
+
+    //TODO Figure where to use startForResult (maybe in another file)
+    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val favorite = result.data?.getSerializableExtra(FAVORITE) as Boolean
+            //TODO set/unset favorite to the right element
+            Toast.makeText(this, "Is favorite : ", Toast.LENGTH_LONG).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
