@@ -3,6 +3,7 @@ package com.example.projetandroidfuel
 import android.app.Activity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,6 +25,10 @@ const val SERVER_BASE_URL = "https://app-29cf3f13-cafb-432e-9b23-f0010d073522.cl
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private val stations = StationHM()
+
+    private val btnListDisplay: Button by lazy { findViewById(R.id.buttonList) }
+    private val btnMapDisplay: Button by lazy { findViewById(R.id.buttonMap) }
+    private val btnInfoDisplay: Button by lazy { findViewById(R.id.buttonInfo) }
 
     private val retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
         .baseUrl(SERVER_BASE_URL).build()
@@ -58,6 +63,14 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(baseContext, "Failure MainActivity.onCreate stationService.getAllStations().enqueue", Toast.LENGTH_SHORT).show()
             }
         })
+        btnListDisplay.setOnClickListener { displayStationListFragment() }
+        btnMapDisplay.setOnClickListener { displayMapFragment() }
+        btnInfoDisplay.setOnClickListener { displayGeneralInfoFragment() }
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.a_main_lyt_container, supportMapFragment)
+            .commit()
+        supportMapFragment.getMapAsync(this)
     }
 
     private fun displayStationListFragment() {

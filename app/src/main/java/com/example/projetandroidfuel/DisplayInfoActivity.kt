@@ -19,7 +19,7 @@ class DisplayInfoActivity : AppCompatActivity() {
     private fun saveFavorite() {
         //TODO get favorite state
         //val favorite =
-        intent.putExtra(FAVORITE, favorite)
+        //intent.putExtra(FAVORITE, favorite)
         setResult(RESULT_OK, intent)
         finish()
     }
