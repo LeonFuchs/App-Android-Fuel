@@ -49,15 +49,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Toast.makeText(baseContext, "onCreate Main", Toast.LENGTH_SHORT).show()
+
         stationService.getAllStations().enqueue(object : Callback<List<Station>> {
             override fun onResponse(
                 call: Call<List<Station>>, response: Response<List<Station>>
             ) {
                 val allBooks: List<Station>? = response.body()
                 allBooks?.forEach { stations.addStation(it) }
-                Toast.makeText(baseContext, "Import Success", Toast.LENGTH_SHORT).show()
-                Toast.makeText(baseContext, allBooks?.size.toString(), Toast.LENGTH_SHORT).show()
                 displayStationListFragment()
             }
 
@@ -65,8 +63,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(baseContext, "Failure MainActivity.onCreate stationService.getAllStations().enqueue", Toast.LENGTH_SHORT).show()
             }
         })
-        stations.addStation(Station(1,4200000,600000,"28124","45 route bla","Gard",listOf(PrixElement("Gazole","1","02-12-2024","1.952")), listOf("Gazole"),true))
-
         btnListDisplay.setOnClickListener { displayStationListFragment() }
         btnMapDisplay.setOnClickListener { displayMapFragment() }
         btnInfoDisplay.setOnClickListener { displayGeneralInfoFragment() }
@@ -75,8 +71,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             .add(R.id.a_main_lyt_container, supportMapFragment)
             .commit()
         supportMapFragment.getMapAsync(this)
-
-        displayStationListFragment()
     }
 
     private fun displayStationListFragment() {
