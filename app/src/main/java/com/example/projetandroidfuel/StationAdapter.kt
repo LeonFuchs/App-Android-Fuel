@@ -22,12 +22,10 @@ class StationAdapter(private var stations: List<Station>): RecyclerView.Adapter<
         holder.txvAdress.text = station.adresse
         holder.txvFuels.text = station.fuelsString()
         if (station.favorite){
-            holder.imgStarOff.visibility = View.GONE
             holder.imgStarOn.visibility = View.VISIBLE
         }
         else{
             holder.imgStarOn.visibility = View.GONE
-            holder.imgStarOff.visibility = View.VISIBLE
         }
     }
 

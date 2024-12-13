@@ -10,5 +10,4 @@ class StationViewHolder(rootView: View): RecyclerView.ViewHolder(rootView) {
     var txvAdress = rootView.findViewById<TextView>(R.id.txvAdress)
     var txvFuels = rootView.findViewById<TextView>(R.id.txvFuels)
     var imgStarOn = rootView.findViewById<ImageView>(R.id.imgStarOn)
-    var imgStarOff = rootView.findViewById<ImageView>(R.id.imgStarOff)
 }
