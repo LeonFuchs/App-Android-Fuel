@@ -9,15 +9,121 @@
         android:id="@+id/txvAdress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txvCity"
         app:layout_constraintStart_toEndOf="@+id/txvCity"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="Adresse" />
 
     <TextView
         android:id="@+id/txvCity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Ville" />
+
+    <TextView
+        android:id="@+id/txv_GPLc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GPLc :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txv_SP95" />
+
+    <TextView
+        android:id="@+id/txv_PriceGplc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/txv_GPLc"
+        app:layout_constraintTop_toTopOf="@+id/txv_GPLc"
+        tools:text="prixGPLc" />
+
+    <TextView
+        android:id="@+id/txv_Gazole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gazole :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvCity" />
+
+    <TextView
+        android:id="@+id/txv_PriceGazole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/txv_Gazole"
+        app:layout_constraintTop_toTopOf="@+id/txv_Gazole"
+        tools:text="prixGazole" />
+
+    <TextView
+        android:id="@+id/txv_PriceSP98"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/txv_SP98"
+        app:layout_constraintTop_toTopOf="@id/txv_SP98"
+        tools:text="prixSP98" />
+
+    <TextView
+        android:id="@+id/txv_PriceE10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/txv_E10"
+        app:layout_constraintTop_toTopOf="@id/txv_E10"
+        tools:text="prixE10" />
+
+    <TextView
+        android:id="@+id/txv_PriceE85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/txv_E85"
+        app:layout_constraintTop_toTopOf="@id/txv_E85"
+        tools:text="prixE85" />
+
+    <TextView
+        android:id="@+id/txv_PriceSP95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/txv_SP95"
+        app:layout_constraintTop_toTopOf="@id/txv_SP95"
+        tools:text="prixSP95" />
+
+    <TextView
+        android:id="@+id/txv_SP98"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SP98 :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txv_Gazole" />
+
+    <TextView
+        android:id="@+id/txv_E10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E10 :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txv_SP98" />
+
+    <TextView
+        android:id="@+id/txv_E85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E85 :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txv_E10" />
+
+    <TextView
+        android:id="@+id/txv_SP95"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SP95 :"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txv_E85" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

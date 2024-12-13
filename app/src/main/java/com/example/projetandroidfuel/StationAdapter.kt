@@ -17,8 +17,20 @@ class StationAdapter(private var stations: List<Station>): RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: StationViewHolder, position: Int) {
         val station = stations[position]
-        //TODO complete with adapted following
-        //holder.txvElement.text = ElementString
+        holder.txvCity.text = station.ville
+        holder.txvAdress.text = station.adresse
+        if(station.carburants.contains("Gazole")){station.prix.forEach {if (it.nom=="Gazole"){holder.txvPriceGazole.text = it.valeur.toString()+" €/L"}}}
+        else{holder.txvPriceGazole.text = "Indisponible"}
+        if(station.carburants.contains("SP98")){station.prix.forEach {if (it.nom=="SP98"){holder.txvPriceGazole.text = it.valeur.toString()+" €/L"}}}
+        else{holder.txvPriceSP98.text = "Indisponible"}
+        if(station.carburants.contains("E10")){station.prix.forEach {if (it.nom=="E10"){holder.txvPriceGazole.text = it.valeur.toString()+" €/L"}}}
+        else{holder.txvPriceE10.text = "Indisponible"}
+        if(station.carburants.contains("E85")){station.prix.forEach {if (it.nom=="E85"){holder.txvPriceGazole.text = it.valeur.toString()+" €/L"}}}
+        else{holder.txvPriceE85.text = "Indisponible"}
+        if(station.carburants.contains("SP95")){station.prix.forEach {if (it.nom=="SP95"){holder.txvPriceGazole.text = it.valeur.toString()+" €/L"}}}
+        else{holder.txvPriceSP95.text = "Indisponible"}
+        if(station.carburants.contains("GPLc")){station.prix.forEach {if (it.nom=="GPLc"){holder.txvPriceGazole.text = it.valeur.toString()+" €/L"}}}
+        else{holder.txvPriceGPLc.text = "Indisponible"}
     }
 
     fun updateStations(allStations: List<Station>){

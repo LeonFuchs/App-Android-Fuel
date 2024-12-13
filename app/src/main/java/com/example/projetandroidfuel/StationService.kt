@@ -7,10 +7,10 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface StationService {
-    @GET("/fuels")
+    @GET("/stations")
     fun getAllStations(): Call<List<Station>>
 
-    @GET("/fuels")
+    @GET("/stations")
     fun getStationsWith(@Query("carburant") carburant: String): Call<List<Station>>
 
     //TODO complete other HTTP requests

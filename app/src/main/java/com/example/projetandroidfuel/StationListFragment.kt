@@ -14,7 +14,7 @@ private const val STATIONS = "stations"
 
 class StationListFragment : Fragment() {
     private lateinit var stations: ArrayList<Station>
-    private lateinit var stationAdapter: StationAdapter
+    public lateinit var stationAdapter: StationAdapter
     private lateinit var recyclerView: RecyclerView
 
 
@@ -33,7 +33,7 @@ class StationListFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_station_list, container, false)
 
         recyclerView = rootView.findViewById(R.id.f_station_list_rcv_stations)
-        stationAdapter = StationAdapter(stations)
+        stationAdapter = StationAdapter(stations.toList())
         recyclerView.adapter = stationAdapter
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.addItemDecoration(
