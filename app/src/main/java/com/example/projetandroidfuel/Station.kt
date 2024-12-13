@@ -11,7 +11,7 @@ data class Station (
     val ville: String,
     val prix: List<PrixElement>,
     val carburants: List<String>,
-    val favorite: Boolean
+    var favorite: Boolean
 ) : Serializable
 {
     fun toSnippet(): String {

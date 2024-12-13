@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
 
 private const val STATIONS = "stations"
 
 class StationListFragment : Fragment() {
     private lateinit var stations: ArrayList<Station>
-    public lateinit var stationAdapter: StationAdapter
+    private lateinit var stationAdapter: StationAdapter
     private lateinit var recyclerView: RecyclerView
 
 

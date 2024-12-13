@@ -47,9 +47,10 @@
         android:id="@+id/txv_Gazole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Gazole :"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icoGazole" />
+        app:layout_constraintTop_toBottomOf="@+id/icoE85" />
 
     <TextView
         android:id="@+id/txv_PriceGazole"
@@ -130,51 +131,72 @@
 
     <ImageView
         android:id="@+id/icoGazole"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txvCity"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:srcCompat="@android:drawable/gallery_thumb" />
 
     <ImageView
         android:id="@+id/icoSP98"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toEndOf="@+id/icoGazole"
         app:layout_constraintTop_toTopOf="@+id/icoGazole"
         app:srcCompat="@android:drawable/gallery_thumb" />
 
     <ImageView
         android:id="@+id/icoE10"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toEndOf="@id/icoSP98"
         app:layout_constraintTop_toTopOf="@+id/icoSP98"
         app:srcCompat="@android:drawable/gallery_thumb" />
 
     <ImageView
         android:id="@+id/icoE85"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintStart_toEndOf="@id/icoE10"
-        app:layout_constraintTop_toTopOf="@id/icoE10"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icoGazole"
         app:srcCompat="@android:drawable/gallery_thumb" />
 
     <ImageView
         android:id="@+id/icoSP95"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toEndOf="@id/icoE85"
         app:layout_constraintTop_toTopOf="@id/icoE85"
         app:srcCompat="@android:drawable/gallery_thumb" />
 
     <ImageView
         android:id="@+id/icoGPLc"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
         app:layout_constraintStart_toEndOf="@id/icoSP95"
         app:layout_constraintTop_toTopOf="@id/icoSP95"
         app:srcCompat="@android:drawable/gallery_thumb" />
+
+    <CheckBox
+        android:id="@+id/cBoxFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:button="@android:drawable/btn_star"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Carburants disponibles :"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txvCity" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

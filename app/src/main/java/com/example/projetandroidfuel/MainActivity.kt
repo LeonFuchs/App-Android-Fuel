@@ -1,6 +1,7 @@
 package com.example.projetandroidfuel
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
@@ -36,20 +37,10 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private val supportMapFragment = SupportMapFragment.newInstance()
 
-    //TODO Figure where to use startForResult (maybe in another file)
-    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            result: ActivityResult ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val favorite = result.data?.getSerializableExtra(FAVORITE) as Boolean
-            //TODO set/unset favorite to the right element
-            Toast.makeText(this, "Is favorite : ", Toast.LENGTH_LONG).show()
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Toast.makeText(baseContext, "onCreate Main", Toast.LENGTH_SHORT).show()
+
         stationService.getAllStations().enqueue(object : Callback<List<Station>> {
             override fun onResponse(
                 call: Call<List<Station>>, response: Response<List<Station>>
@@ -65,7 +56,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(baseContext, "Failure MainActivity.onCreate stationService.getAllStations().enqueue", Toast.LENGTH_SHORT).show()
             }
         })
-        stations.addStation(Station(1,4200000,600000,"28124","45 route bla","Gard",listOf(PrixElement("Gazole","1","02-12-2024","1.952")), listOf("Gazole"),true))
+        stations.addStation(Station(1,4200000,600000,"28124","45 route bla","Gard",listOf(PrixElement("Gazole","1","02-12-2024","1.952"),PrixElement("SP95","2","25-12-2024","0.530")), listOf("Gazole","SP95"),true))
 
         btnListDisplay.setOnClickListener { displayStationListFragment() }
         btnMapDisplay.setOnClickListener { displayMapFragment() }
@@ -101,8 +92,23 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_delete -> {
-                stations.clear()
+            R.id.action_refresh -> {
+                stationService.getAllStations().enqueue(object : Callback<List<Station>> {
+                    override fun onResponse(
+                        call: Call<List<Station>>,
+                        response: Response<List<Station>>
+                    ) {
+                        val allBooks: List<Station>? = response.body()
+                        allBooks?.forEach { stations.addStation(it) }
+                        Toast.makeText(baseContext, "Success refresh data", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(baseContext, allBooks?.size.toString(), Toast.LENGTH_SHORT).show()
+                        displayStationListFragment()
+                    }
+
+                    override fun onFailure(call: Call<List<Station>>, t: Throwable) {
+                        Toast.makeText(baseContext, "Failure refresh data", Toast.LENGTH_SHORT).show()
+                    }
+                })
                 displayStationListFragment()
                 true
             }

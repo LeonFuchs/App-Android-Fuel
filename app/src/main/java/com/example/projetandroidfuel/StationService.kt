@@ -13,5 +13,5 @@ interface StationService {
     fun getAllStations(): Call<List<Station>>
 
     @PUT("/stations")
-    fun putFavorite(@Query("id") id: Int,@Body favorite: Boolean)
+    fun putFavorite(@Query("id") id: Int,@Body favorite: Boolean): Call<Station>
 }
