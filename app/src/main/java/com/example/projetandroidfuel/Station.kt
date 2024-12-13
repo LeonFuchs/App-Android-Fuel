@@ -21,4 +21,12 @@ data class Station (
         }
         return res
     }
+
+    fun fuelsString(): String {
+        var res = ""
+        this.carburants.forEach {
+            res += it + ", "
+        }
+        return res.dropLast(2)
+    }
 }
