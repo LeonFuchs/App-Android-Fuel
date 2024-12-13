@@ -29,7 +29,7 @@ class StationAdapter(private var stations: List<Station>): RecyclerView.Adapter<
             holder.imgStarOn.visibility = View.GONE
         }
         holder.rootView.setOnClickListener {
-            val context = holder.rootView.context
+            val context = holder.itemView.context
             val intent = Intent(context,DisplayInfoActivity::class.java)
                 .putExtra("STATION",station)
             context.startActivity(intent)

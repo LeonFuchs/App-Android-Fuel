@@ -74,8 +74,9 @@ class DisplayInfoActivity : AppCompatActivity() {
 
         val favoriteCBox = findViewById<CheckBox>(R.id.cBoxFavorite)
         favoriteCBox.isChecked = station.favorite
-        favoriteCBox.setOnCheckedChangeListener { _, _ -> station.favorite = !station.favorite }
-        saveFavorite(station)
+        favoriteCBox.setOnCheckedChangeListener { _, _ -> station.favorite = !station.favorite
+            saveFavorite(station)
+        }
     }
 
     private fun saveFavorite(station: Station) {

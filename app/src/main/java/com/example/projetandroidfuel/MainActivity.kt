@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -66,6 +68,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun displayStationListFragment() {
+        findViewById<TextView>(R.id.txv_Loading).visibility = View.GONE
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val stationListFragment = StationListFragment.newInstance(stations.getAllStations())
         fragmentTransaction.replace(R.id.a_main_lyt_container, stationListFragment)
@@ -73,12 +76,14 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun displayGeneralInfoFragment() {
+        findViewById<TextView>(R.id.txv_Loading).visibility = View.GONE
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.a_main_lyt_container, GeneralInfoFragment())
         fragmentTransaction.commit()
     }
 
     private fun displayMapFragment() {
+        findViewById<TextView>(R.id.txv_Loading).visibility = View.GONE
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.a_main_lyt_container, SupportMapFragment())
         fragmentTransaction.commit()
@@ -116,15 +121,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(map: GoogleMap) {
-        //TODO remove gardanne
-        map.addMarker(
-            MarkerOptions()
-            .position(LatLng(43.450001,5.466667))
-            .title("Gardanne")
-            .snippet("ISMIN")
-        )
         map.moveCamera(CameraUpdateFactory.zoomTo(4F))
-        map.moveCamera(CameraUpdateFactory.newLatLng(LatLng(43.450001,5.466667)))
+        map.moveCamera(CameraUpdateFactory.newLatLng(LatLng(50.0,5.5)))
         Log.i("Map", "onMapReady: before iterator")
         stations.getAllStations().forEach{
             map.addMarker(
@@ -134,5 +132,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                     .snippet(it.toSnippet())
             )
         }
+    }
+
+    //Clear bundle of fragment data to not surcharge sub-activities intents
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.clear()
     }
 }
