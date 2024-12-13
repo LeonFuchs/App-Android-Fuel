@@ -1,6 +1,7 @@
 package com.example.projetandroidfuel
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
@@ -17,8 +18,17 @@ class StationAdapter(private var stations: List<Station>): RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: StationViewHolder, position: Int) {
         val station = stations[position]
-        //TODO complete with adapted following
-        //holder.txvElement.text = ElementString
+        holder.txvCity.text = station.ville
+        holder.txvAdress.text = station.adresse
+        holder.txvFuels.text = station.fuelsString()
+        if (station.favorite){
+            holder.imgStarOff.visibility = View.GONE
+            holder.imgStarOn.visibility = View.VISIBLE
+        }
+        else{
+            holder.imgStarOn.visibility = View.GONE
+            holder.imgStarOff.visibility = View.VISIBLE
+        }
     }
 
     fun updateStations(allStations: List<Station>){
