@@ -126,7 +126,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.zoomTo(4F))
         map.moveCamera(CameraUpdateFactory.newLatLng(LatLng(43.450001,5.466667)))
         Log.i("Map", "onMapReady: before iterator")
-        /*
         stations.getAllStations().forEach{
             map.addMarker(
                 MarkerOptions()
@@ -134,6 +133,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                     .title(it.carburants().joinToString(","))
                     .snippet(it.toSnippet())
             )
-        }*/
+        }
     }
 }
