@@ -20,7 +20,7 @@ data class Station (
 {
     fun toSnippet(): String {
         var res = ""
-        //TODO redo
+        res = this.fuelsString()
         return res
     }
     fun fuelsString(): String {
