@@ -14,9 +14,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonList">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/buttonList"/>
 
     <Button
         android:id="@+id/buttonList"
@@ -25,7 +23,7 @@
         android:text="@string/list"
         app:layout_constraintEnd_toStartOf="@+id/buttonMap"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <Button
         android:id="@+id/buttonMap"
@@ -34,7 +32,7 @@
         android:text="@string/map"
         app:layout_constraintEnd_toStartOf="@+id/buttonInfo"
         app:layout_constraintStart_toEndOf="@+id/buttonList"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/buttonList" />
 
     <Button
         android:id="@+id/buttonInfo"
@@ -43,6 +41,18 @@
         android:text="@string/informations"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonMap"
+        app:layout_constraintTop_toTopOf="@+id/buttonMap" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

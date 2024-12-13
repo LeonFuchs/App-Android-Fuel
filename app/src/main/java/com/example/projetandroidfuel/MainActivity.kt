@@ -1,6 +1,8 @@
 package com.example.projetandroidfuel
 
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
@@ -36,6 +38,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         stationService.getAllStations().enqueue(object : Callback<List<Station>> {
             override fun onResponse(
@@ -81,6 +85,11 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         supportMapFragment.getMapAsync(this)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_refresh -> {
@@ -100,7 +109,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                         Toast.makeText(baseContext, "Failure refresh data", Toast.LENGTH_SHORT).show()
                     }
                 })
-                displayStationListFragment()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -109,15 +117,16 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(map: GoogleMap) {
         //TODO remove gardanne
-        val gardanne = LatLng(43.450001,5.466667)
         map.addMarker(
             MarkerOptions()
-            .position(gardanne)
+            .position(LatLng(43.450001,5.466667))
             .title("Gardanne")
             .snippet("ISMIN")
         )
         map.moveCamera(CameraUpdateFactory.zoomTo(4F))
-        map.moveCamera(CameraUpdateFactory.newLatLng(gardanne))
+        map.moveCamera(CameraUpdateFactory.newLatLng(LatLng(43.450001,5.466667)))
+        Log.i("Map", "onMapReady: before iterator")
+        /*
         stations.getAllStations().forEach{
             map.addMarker(
                 MarkerOptions()
@@ -125,6 +134,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                     .title(it.carburants().joinToString(","))
                     .snippet(it.toSnippet())
             )
-        }
+        }*/
     }
 }
