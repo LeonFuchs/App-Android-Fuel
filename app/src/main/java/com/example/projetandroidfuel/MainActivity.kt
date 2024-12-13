@@ -1,13 +1,9 @@
 package com.example.projetandroidfuel
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -45,10 +41,9 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             override fun onResponse(
                 call: Call<List<Station>>, response: Response<List<Station>>
             ) {
-                val allBooks: List<Station>? = response.body()
-                allBooks?.forEach { stations.addStation(it) }
-                Toast.makeText(baseContext, "Import Success", Toast.LENGTH_SHORT).show()
-                Toast.makeText(baseContext, allBooks?.size.toString(), Toast.LENGTH_SHORT).show()
+                val allStations: List<Station>? = response.body()
+                allStations?.forEach { stations.addStation(it) }
+                Toast.makeText(baseContext, "Number of imports : "+allStations?.size.toString(), Toast.LENGTH_SHORT).show()
                 displayStationListFragment()
             }
 
@@ -56,8 +51,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(baseContext, "Failure MainActivity.onCreate stationService.getAllStations().enqueue", Toast.LENGTH_SHORT).show()
             }
         })
-        stations.addStation(Station(1,4200000,600000,"28124","45 route bla","Gard",listOf(PrixElement("Gazole","1","02-12-2024","1.952"),PrixElement("SP95","2","25-12-2024","0.530")), listOf("Gazole","SP95"),true))
-
         btnListDisplay.setOnClickListener { displayStationListFragment() }
         btnMapDisplay.setOnClickListener { displayMapFragment() }
         btnInfoDisplay.setOnClickListener { displayGeneralInfoFragment() }
@@ -66,8 +59,6 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             .add(R.id.a_main_lyt_container, supportMapFragment)
             .commit()
         supportMapFragment.getMapAsync(this)
-
-        displayStationListFragment()
     }
 
     private fun displayStationListFragment() {
@@ -130,8 +121,8 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         stations.getAllStations().forEach{
             map.addMarker(
                 MarkerOptions()
-                    .position(LatLng(it.latitude.toDouble()/100000,it.longitude.toDouble()/100000))
-                    .title(it.carburants.joinToString(","))
+                    .position(LatLng(it.latitude/100000,it.longitude/100000))
+                    .title(it.carburants().joinToString(","))
                     .snippet(it.toSnippet())
             )
         }

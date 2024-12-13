@@ -17,7 +17,7 @@ class StationHM {
     }
 
     fun getStationsWith(carburants: List<String>): List<Station> {
-        return storage.filterValues { station -> station.carburants.containsAll(carburants) }
+        return storage.filterValues { station -> station.carburants().containsAll(carburants) }
             .values
             .sortedBy { station -> station.id }
     }
